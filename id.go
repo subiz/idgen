@@ -5,7 +5,6 @@ import (
 	"github.com/thanhpk/randstr"
 	"github.com/thanhpk/baseconv"
 	"strconv"
-	"sync"
 )
 
 // New return new random ID
@@ -58,21 +57,6 @@ func NewChatID() string {
 
 func NewScheduleItemID() string {
 	return generateID("si", 20)
-}
-
-var jobid = int(time.Now().Unix())
-var m = sync.Mutex{}
-func NewSmqJobID() string {
-	m.Lock()
-	defer m.Unlock()
-	jobid++
-	j := strconv.Itoa(jobid)
-	lj := len(j)
-	for i := 0; i < 10 - lj; i++ {
-		j = "0" + j
-	}
-
-	return j + "." + generateID("sm", 10)
 }
 
 func NewWebsendID() string {
