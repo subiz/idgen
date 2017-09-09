@@ -5,12 +5,18 @@ import (
 	"github.com/thanhpk/randstr"
 	"github.com/thanhpk/baseconv"
 	"strconv"
+	"sync"
 )
 
+// New return new random ID
+func New() string {
+	newid := generateID("", 2)
+	return newid
+}
+
 func generateID(sign string, randomfactor int) string {
-		timestr, _ := baseconv.Convert(strconv.FormatInt(time.Now().UnixNano(), 10),
-		baseconv.DigitsDec,
-    baseconv.Digits62)
+	nowstr := strconv.FormatInt(time.Now().Unix(), 10)
+	timestr, _ := baseconv.Convert(nowstr, baseconv.DigitsDec, baseconv.Digits62)
   return timestr + randstr.RandomString(randomfactor) + sign
 }
 
@@ -30,6 +36,10 @@ func NewInvitationID() string {
 	return generateID("iv", 16)
 }
 
+func NewEventID() string {
+	return generateID("ev", 16)
+}
+
 func NewOutEventID() string {
 	return generateID("oe", 16)
 }
@@ -38,6 +48,54 @@ func NewChatEventID() string {
 	return generateID("ce", 16)
 }
 
+func NewConverstationID() string {
+	return generateID("cs", 16)
+}
+
 func NewChatID() string {
 	return generateID("cs", 16)
+}
+
+func NewScheduleItemID() string {
+	return generateID("si", 20)
+}
+
+var jobid = int(time.Now().Unix())
+var m = sync.Mutex{}
+func NewSmqJobID() string {
+	m.Lock()
+	defer m.Unlock()
+	jobid++
+	j := strconv.Itoa(jobid)
+	lj := len(j)
+	for i := 0; i < 10 - lj; i++ {
+		j = "0" + j
+	}
+
+	return j + "." + generateID("sm", 10)
+}
+
+func NewWebsendID() string {
+	return generateID("Wd", 20) // websend
+}
+
+// NewAuthToken return new oauth2 authorization token
+func NewAuthToken() string {
+	return generateID("au", 20)
+}
+
+func NewRefreshToken() string {
+	return generateID("rt", 30)
+}
+
+func NewClientID() string {
+	return generateID("cl", 16)
+}
+
+func NewErrorID() string {
+	return generateID("er", 5)
+}
+
+func NewWebhookID() string {
+	return generateID("wh", 8)
 }
