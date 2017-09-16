@@ -83,3 +83,21 @@ func NewErrorID() string {
 func NewWebhookID() string {
 	return generateID("wh", 8)
 }
+
+func NewWsConnID(partition int32) string {
+	return strconv.Itoa(int(partition)) + "p" + generateID("ws", 30)
+}
+
+func GetPartitionFromWsConnID(id string) int32 {
+	for i := 0; i < len(id); i++ {
+		if id[i] == "p"[0] {
+			par := id[:i]
+			partition, err := strconv.Atoi(par)
+			if err != nil {
+				return -1
+			}
+			return int32(partition)
+		}
+	}
+	return -1
+}
