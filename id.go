@@ -36,7 +36,7 @@ func NewInvitationID() string {
 }
 
 func NewEventID() string {
-	return generateID("ev", 16)
+	return generateID("ev", 24)
 }
 
 func NewOutEventID() string {
@@ -70,6 +70,10 @@ func NewAuthToken() string {
 
 func NewRefreshToken() string {
 	return generateID("rt", 30)
+}
+
+func NewRuleID() string {
+	return generateID("ru", 10)
 }
 
 func NewClientID() string {
