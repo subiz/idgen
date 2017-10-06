@@ -15,8 +15,8 @@ func New() string {
 
 func generateID(sign string, randomfactor int) string {
 	nowstr := strconv.FormatInt(time.Now().Unix(), 10)
-	timestr, _ := baseconv.Convert(nowstr, baseconv.DigitsDec, baseconv.Digits62)
-  return timestr + randstr.RandomString(randomfactor) + sign
+	timestr, _ := baseconv.Convert(nowstr, baseconv.DigitsDec, "abcdefghijklmnopqrstuvwxyz")
+  return sign + timestr + randstr.RandomString(randomfactor, "abcdefghijklmnopqrstuvwxyz")
 }
 
 func NewAgentGroupID() string {
@@ -24,7 +24,7 @@ func NewAgentGroupID() string {
 }
 
 func NewAccountID() string {
-	return generateID("ac", 16)
+	return generateID("ac", 32)
 }
 
 func NewAgentID() string {
@@ -43,15 +43,7 @@ func NewOutEventID() string {
 	return generateID("oe", 16)
 }
 
-func NewChatEventID() string {
-	return generateID("ce", 16)
-}
-
 func NewConverstationID() string {
-	return generateID("cs", 16)
-}
-
-func NewChatID() string {
 	return generateID("cs", 16)
 }
 
@@ -104,4 +96,16 @@ func GetPartitionFromWsConnID(id string) int32 {
 		}
 	}
 	return -1
+}
+
+func NewUserID() string {
+	return generateID("us", 32)
+}
+
+func NewTagID() string {
+	return generateID("tg", 2)
+}
+
+func NewCannedResponseID() string {
+	return generateID("cn", 2)
 }
