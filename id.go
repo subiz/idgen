@@ -13,38 +13,35 @@ func New() string {
 	return newid
 }
 
+
 func generateID(sign string, randomfactor int) string {
-	nowstr := strconv.FormatInt(time.Now().Unix(), 10)
+	nowstr := strconv.FormatInt(time.Now().UnixNano() / 1000000, 10)
 	timestr, _ := baseconv.Convert(nowstr, baseconv.DigitsDec, "abcdefghijklmnopqrstuvwxyz")
   return sign + timestr + randstr.RandomString(randomfactor, "abcdefghijklmnopqrstuvwxyz")
 }
 
 func NewAgentGroupID() string {
-	return generateID("gr", 16)
+	return generateID("gr", 5)
 }
 
 func NewAccountID() string {
-	return generateID("ac", 32)
+	return generateID("ac", 5)
 }
 
 func NewAgentID() string {
-	return generateID("ag", 16)
+	return generateID("ag", 7)
 }
 
 func NewInvitationID() string {
-	return generateID("iv", 16)
+	return generateID("iv", 10)
 }
 
 func NewEventID() string {
-	return generateID("ev", 24)
+	return generateID("ev", 16)
 }
 
-func NewOutEventID() string {
-	return generateID("oe", 16)
-}
-
-func NewConverstationID() string {
-	return generateID("cs", 16)
+func NewConversationID() string {
+	return generateID("cs", 7)
 }
 
 func NewScheduleItemID() string {
@@ -65,19 +62,19 @@ func NewRefreshToken() string {
 }
 
 func NewRuleID() string {
-	return generateID("ru", 10)
+	return generateID("ru", 6)
 }
 
 func NewClientID() string {
-	return generateID("cl", 16)
+	return generateID("cl", 6)
 }
 
 func NewErrorID() string {
-	return generateID("er", 5)
+	return generateID("er", 6)
 }
 
 func NewWebhookID() string {
-	return generateID("wh", 8)
+	return generateID("wh", 6)
 }
 
 func NewWsConnID(partition int32) string {
@@ -99,13 +96,21 @@ func GetPartitionFromWsConnID(id string) int32 {
 }
 
 func NewUserID() string {
-	return generateID("us", 32)
+	return generateID("us", 12)
 }
 
 func NewTagID() string {
-	return generateID("tg", 2)
+	return generateID("tg", 5)
 }
 
 func NewCannedResponseID() string {
-	return generateID("cn", 2)
+	return generateID("cn", 5)
+}
+
+func NewFileID() string {
+	return generateID("fi", 8)
+}
+
+func NewButtonID() string {
+	return generateID("bt", 8)
 }
