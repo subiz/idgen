@@ -2,9 +2,8 @@ package ID_test
 
 import (
 	"testing"
-  _ "fmt"
+  "fmt"
 	. "bitbucket.org/subiz/id"
-	"bitbucket.org/subiz/gocommon"
 )
 
 func TestId(t *testing.T) {
@@ -33,6 +32,6 @@ func TestId(t *testing.T) {
 	}
 
 	for i := range ids {
-		common.Logf("%15s: %s", ids[i].name, ids[i].id)
+		fmt.Printf("%15s: %s\n", ids[i].name, ids[i].id)
 	}
 }
