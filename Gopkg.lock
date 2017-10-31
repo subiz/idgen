@@ -8,10 +8,10 @@
   revision = "ecdb2bce436580b7af32bd93f569dddadf3a0d4c"
 
 [[projects]]
-  branch = "master"
   name = "github.com/thanhpk/randstr"
   packages = ["."]
   revision = "6d99cbb86c31ca5989281c64d105de7914c28fd2"
+  version = "v1.0.0"
 
 [solve-meta]
   analyzer-name = "dep"

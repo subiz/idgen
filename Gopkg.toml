@@ -23,7 +23,7 @@
 
 [[constraint]]
   name = "bitbucket.org/subiz/gocommon"
-  version = "1.0.7"
+	branch = "master"
 
 [[constraint]]
   branch = "master"
