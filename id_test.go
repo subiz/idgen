@@ -29,6 +29,7 @@ func TestId(t *testing.T) {
 		{ "error", NewErrorID() },
 		{ "canned response", NewCannedResponseID() },
 		{ "ws conn", NewWsConnID(10) },
+		{ "challenge", NewChallengeID() },
 	}
 
 	for i := range ids {

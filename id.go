@@ -114,3 +114,7 @@ func NewFileID() string {
 func NewButtonID() string {
 	return generateID("bt", 8)
 }
+
+func NewChallengeID() string {
+	return generateID("cH", 64)
+}
