@@ -49,7 +49,7 @@ func NewScheduleItemID() string {
 }
 
 func NewWebsendID() string {
-	return generateID("Wd", 20) // websend
+	return generateID("wd", 20) // websend
 }
 
 // NewAuthToken return new oauth2 authorization token
@@ -116,5 +116,9 @@ func NewButtonID() string {
 }
 
 func NewChallengeID() string {
-	return generateID("cH", 64)
+	return generateID("ch", 64)
+}
+
+func NewSegmentationID() string {
+	return generateID("sg", 5)
 }

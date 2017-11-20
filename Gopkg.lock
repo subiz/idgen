@@ -5,13 +5,13 @@
   branch = "master"
   name = "github.com/thanhpk/baseconv"
   packages = ["."]
-  revision = "ecdb2bce436580b7af32bd93f569dddadf3a0d4c"
+  revision = "758d96e93935b542e8d1b72a6d1a5e2b7479921a"
 
 [[projects]]
+  branch = "master"
   name = "github.com/thanhpk/randstr"
   packages = ["."]
-  revision = "6d99cbb86c31ca5989281c64d105de7914c28fd2"
-  version = "v1.0.0"
+  revision = "54b72d72edea0f7ab8190b89c94237730dc6828b"
 
 [solve-meta]
   analyzer-name = "dep"
