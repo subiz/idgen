@@ -22,10 +22,6 @@
 
 
 [[constraint]]
-  name = "bitbucket.org/subiz/gocommon"
-	branch = "master"
-
-[[constraint]]
   branch = "master"
   name = "github.com/thanhpk/baseconv"
 
