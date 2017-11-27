@@ -15,13 +15,13 @@ func New() string {
 
 
 func generateID(sign string, randomfactor int) string {
-	nowstr := strconv.FormatInt(time.Now().UnixNano() / 1000000, 10)
+	nowstr := strconv.FormatInt(time.Now().UnixNano(), 10)
 	timestr, _ := baseconv.Convert(nowstr, baseconv.DigitsDec, "abcdefghijklmnopqrstuvwxyz")
   return sign + timestr + randstr.RandomString(randomfactor, "abcdefghijklmnopqrstuvwxyz")
 }
 
 func NewAgentGroupID() string {
-	return generateID("gr", 5)
+	return generateID("gr", 3)
 }
 
 func NewAccountID() string {
@@ -29,19 +29,19 @@ func NewAccountID() string {
 }
 
 func NewAgentID() string {
-	return generateID("ag", 7)
+	return generateID("ag", 3)
 }
 
 func NewInvitationID() string {
-	return generateID("iv", 10)
+	return generateID("iv", 4)
 }
 
 func NewEventID() string {
-	return generateID("ev", 16)
+	return generateID("ev", 10)
 }
 
 func NewConversationID() string {
-	return generateID("cs", 7)
+	return generateID("cs", 3)
 }
 
 func NewScheduleItemID() string {
@@ -78,7 +78,7 @@ func NewWebhookID() string {
 }
 
 func NewWsConnID(partition int32) string {
-	return strconv.Itoa(int(partition)) + "p" + generateID("ws", 30)
+	return strconv.Itoa(int(partition)) + "p" + generateID("ws", 20)
 }
 
 func GetPartitionFromWsConnID(id string) int32 {
@@ -96,7 +96,7 @@ func GetPartitionFromWsConnID(id string) int32 {
 }
 
 func NewUserID() string {
-	return generateID("us", 12)
+	return generateID("us", 6)
 }
 
 func NewTagID() string {
@@ -108,7 +108,7 @@ func NewCannedResponseID() string {
 }
 
 func NewFileID() string {
-	return generateID("fi", 8)
+	return generateID("fi", 5)
 }
 
 func NewButtonID() string {
@@ -116,7 +116,7 @@ func NewButtonID() string {
 }
 
 func NewChallengeID() string {
-	return generateID("ch", 64)
+	return generateID("ch", 40)
 }
 
 func NewSegmentationID() string {
