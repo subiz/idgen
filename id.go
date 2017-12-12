@@ -122,3 +122,7 @@ func NewChallengeID() string {
 func NewSegmentationID() string {
 	return generateID("sg", 5)
 }
+
+func NewSubizID() string {
+	return generateID("su", 8)
+}
