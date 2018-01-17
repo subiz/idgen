@@ -32,6 +32,7 @@ func TestId(t *testing.T) {
 		{ "challenge", NewChallengeID() },
 		{ "segmentation", NewSegmentationID() },
 		{ "subiz", NewSubizID() },
+		{ "user field", NewUserFieldID() },
 	}
 
 	for i := range ids {

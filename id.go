@@ -126,3 +126,7 @@ func NewSegmentationID() string {
 func NewSubizID() string {
 	return generateID("su", 8)
 }
+
+func NewUserFieldID() string {
+	return generateID("uf", 3)
+}
