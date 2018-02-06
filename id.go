@@ -130,3 +130,7 @@ func NewSubizID() string {
 func NewUserFieldID() string {
 	return generateID("uf", 3)
 }
+
+func NewRequestID() string {
+	return generateID("rq", 10)
+}
