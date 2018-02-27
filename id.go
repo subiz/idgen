@@ -134,3 +134,7 @@ func NewUserFieldID() string {
 func NewRequestID() string {
 	return generateID("rq", 10)
 }
+
+func NewAutomationID() string {
+	return generateID("at", 5)
+}
