@@ -138,3 +138,7 @@ func NewRequestID() string {
 func NewAutomationID() string {
 	return generateID("at", 5)
 }
+
+func NewUserSessionID() string {
+	return generateID("ss", 6)
+}

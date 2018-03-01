@@ -35,6 +35,7 @@ func TestId(t *testing.T) {
 		{ "user field", NewUserFieldID() },
 		{ "request", NewRequestID() },
 		{ "automation", NewAutomationID() },
+		{ "user session", NewUserSessionID() },
 	}
 
 	for i := range ids {
