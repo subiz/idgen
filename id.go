@@ -13,11 +13,22 @@ func New() string {
 	return newid
 }
 
-
 func generateID(sign string, randomfactor int) string {
 	nowstr := strconv.FormatInt(time.Now().UnixNano(), 10)
 	timestr, _ := baseconv.Convert(nowstr, baseconv.DigitsDec, "abcdefghijklmnopqrstuvwxyz")
   return sign + timestr + randstr.RandomString(randomfactor, "abcdefghijklmnopqrstuvwxyz")
+}
+
+func GetCreated(id, prefix string) (int64, error) {
+	timestr, err := baseconv.Convert(id[len(prefix):13 + len(prefix)], "abcdefghijklmnopqrstuvwxyz", baseconv.DigitsDec)
+	if err != nil {
+		return 0, err
+	}
+	return strconv.ParseInt(timestr, 10, 0)
+}
+
+func New0() string {
+	return generateID("00", 0)
 }
 
 func NewAgentGroupID() string {

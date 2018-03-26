@@ -36,7 +36,11 @@ func TestId(t *testing.T) {
 		{ "request", NewRequestID() },
 		{ "automation", NewAutomationID() },
 		{ "user session", NewUserSessionID() },
+		{ "zero", New0() },
 	}
+	c, err := GetCreated(New0(), "00")
+	fmt.Printf("%d, %v\n", c, err)
+
 
 	for i := range ids {
 		fmt.Printf("%15s: %s\n", ids[i].name, ids[i].id)
