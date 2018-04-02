@@ -153,3 +153,11 @@ func NewAutomationID() string {
 func NewUserSessionID() string {
 	return generateID("ss", 6)
 }
+
+func NewBillingID() string {
+	return generateID("bi", 6)
+}
+
+func NewInvoiceID() string {
+	return generateID("ic", 6)
+}
