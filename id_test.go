@@ -39,6 +39,7 @@ func TestId(t *testing.T) {
 		{ "invoice", NewInvoiceID() },
 		{ "billing", NewBillingID() },
 		{ "subscription", NewSubscriptionID() },
+		{ "customer", NewCustomerID() },
 		{ "zero", New0() },
 	}
 	c, err := GetCreated(New0(), "00")
