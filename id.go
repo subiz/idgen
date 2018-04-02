@@ -161,3 +161,7 @@ func NewBillingID() string {
 func NewInvoiceID() string {
 	return generateID("ic", 6)
 }
+
+func NewSubscriptionID() string {
+	return generateID("sc", 6)
+}
