@@ -173,3 +173,7 @@ func NewCustomerID() string {
 func NewPaymentLogID() string {
 	return generateID("pl", 6)
 }
+
+func NewPaymentMethodID() string {
+	return generateID("pm", 3)
+}
