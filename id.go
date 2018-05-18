@@ -1,10 +1,11 @@
 package ID
 
 import (
-	"time"
-	"github.com/thanhpk/randstr"
-	"github.com/thanhpk/baseconv"
 	"strconv"
+	"time"
+
+	"github.com/thanhpk/baseconv"
+	"github.com/thanhpk/randstr"
 )
 
 // New return new random ID
@@ -16,11 +17,11 @@ func New() string {
 func generateID(sign string, randomfactor int) string {
 	nowstr := strconv.FormatInt(time.Now().UnixNano(), 10)
 	timestr, _ := baseconv.Convert(nowstr, baseconv.DigitsDec, "abcdefghijklmnopqrstuvwxyz")
-  return sign + timestr + randstr.RandomString(randomfactor, "abcdefghijklmnopqrstuvwxyz")
+	return sign + timestr + randstr.RandomString(randomfactor, "abcdefghijklmnopqrstuvwxyz")
 }
 
 func GetCreated(id, prefix string) (int64, error) {
-	timestr, err := baseconv.Convert(id[len(prefix):13 + len(prefix)], "abcdefghijklmnopqrstuvwxyz", baseconv.DigitsDec)
+	timestr, err := baseconv.Convert(id[len(prefix):13+len(prefix)], "abcdefghijklmnopqrstuvwxyz", baseconv.DigitsDec)
 	if err != nil {
 		return 0, err
 	}
@@ -176,4 +177,8 @@ func NewPaymentLogID() string {
 
 func NewPaymentMethodID() string {
 	return generateID("pm", 3)
+}
+
+func NewAttributeID() string {
+	return generateID("ab", 3)
 }
