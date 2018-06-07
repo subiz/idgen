@@ -1,11 +1,11 @@
 package ID
 
 import (
-	"strconv"
-	"time"
-
+	"errors"
 	"github.com/thanhpk/baseconv"
 	"github.com/thanhpk/randstr"
+	"strconv"
+	"time"
 )
 
 // New return new random ID
@@ -21,6 +21,9 @@ func generateID(sign string, randomfactor int) string {
 }
 
 func GetCreated(id, prefix string) (int64, error) {
+	if len(id)-len(prefix) < 13 {
+		return 0, errors.New("id too short")
+	}
 	timestr, err := baseconv.Convert(id[len(prefix):13+len(prefix)], "abcdefghijklmnopqrstuvwxyz", baseconv.DigitsDec)
 	if err != nil {
 		return 0, err
