@@ -1,4 +1,4 @@
-package ID
+package idgen
 
 import (
 	"errors"
@@ -24,6 +24,7 @@ func GetCreated(id, prefix string) (int64, error) {
 	if len(id)-len(prefix) < 13 {
 		return 0, errors.New("id too short")
 	}
+	// 12 or 13??
 	timestr, err := baseconv.Convert(id[len(prefix):13+len(prefix)], "abcdefghijklmnopqrstuvwxyz", baseconv.DigitsDec)
 	if err != nil {
 		return 0, err

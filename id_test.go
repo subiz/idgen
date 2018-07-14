@@ -1,11 +1,25 @@
-package ID_test
+package idgen
 
 import (
 	"fmt"
 	"testing"
-
-	. "bitbucket.org/subiz/id"
+	"time"
+	"github.com/thanhpk/baseconv"
 )
+
+func TestCreawted(t *testing.T) {
+	nowstr := "14324234234"
+	timestr, _ := baseconv.Convert(nowstr, baseconv.DigitsDec, "abcdefghijklmnopqrstuvwxyz")
+	println("xxxxxx", timestr)
+
+	created, err := GetCreated("evaaaaaaaaaaaaaaaaaaa", "ev")
+	println(time.Unix(0, created).Format(time.RFC3339Nano), err)
+	if _, err := GetCreated("evexwqkbgcbd2f79acd", "ev"); err != nil {
+		//"evqalufuxphqubrufrnqbgcgf"
+		//"00qalufuxpijiao"
+		t.Fatal(err)
+	}
+}
 
 func TestId(t *testing.T) {
 	ids := []struct {
