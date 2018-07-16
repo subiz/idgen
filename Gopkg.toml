@@ -30,8 +30,8 @@
   name = "github.com/thanhpk/baseconv"
 
 [[constraint]]
+  branch = "master"
   name = "github.com/thanhpk/randstr"
-  version = "1.0.0"
 
 [prune]
   go-tests = true
