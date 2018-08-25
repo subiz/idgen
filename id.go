@@ -186,3 +186,7 @@ func NewPaymentMethodID() string {
 func NewAttributeID() string {
 	return generateID("ab", 3)
 }
+
+func NewIdempotencyKey() string {
+	return generateID("ik", 20)
+}

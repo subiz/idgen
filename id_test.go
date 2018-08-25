@@ -58,6 +58,7 @@ func TestId(t *testing.T) {
 		{"payment log", NewPaymentLogID()},
 		{"payment method", NewPaymentMethodID()},
 		{"attribute", NewAttributeID()},
+		{"idempotency key", NewIdempotencyKey()},
 		{"zero", New0()},
 	}
 	c, err := GetCreated(New0(), "00")
