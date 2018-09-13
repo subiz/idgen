@@ -190,3 +190,7 @@ func NewAttributeID() string {
 func NewIdempotencyKey() string {
 	return generateID("ik", 20)
 }
+
+func NewPaymentCommentID() string {
+	return generateID("cm", 10)
+}
