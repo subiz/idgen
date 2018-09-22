@@ -4,17 +4,18 @@ import (
 	"fmt"
 	"testing"
 	"time"
+
 	"github.com/thanhpk/baseconv"
 )
 
-func TestCreawted(t *testing.T) {
+func TestCreated(t *testing.T) {
 	nowstr := "14324234234"
 	timestr, _ := baseconv.Convert(nowstr, baseconv.DigitsDec, "abcdefghijklmnopqrstuvwxyz")
 	println("xxxxxx", timestr)
 
 	created, err := GetCreated("evaaaaaaaaaaaaaaaaaaa", "ev")
 	println(time.Unix(0, created).Format(time.RFC3339Nano), err)
-	if _, err := GetCreated("evexwqkbgcbd2f79acd", "ev"); err != nil {
+	if _, err := GetCreated("evqcxzkihetmvosjgvhctilzx", "ev"); err != nil {
 		//"evqalufuxphqubrufrnqbgcgf"
 		//"00qalufuxpijiao"
 		t.Fatal(err)
@@ -67,5 +68,23 @@ func TestId(t *testing.T) {
 
 	for i := range ids {
 		fmt.Printf("%15s: %s\n", ids[i].name, ids[i].id)
+	}
+}
+
+func TestValidateID(t *testing.T) {
+	ids := []struct {
+		name, id string
+		f        func(id string) bool
+	}{
+		{"user", NewUserID(), IsUserID},
+		{"account", NewAccountID(), IsAccountID},
+	}
+
+	for _, v := range ids {
+		isValid := v.f(v.id)
+		fmt.Printf("%s - %s: %t\n", v.name, v.id, isValid)
+		if !isValid {
+			t.FailNow()
+		}
 	}
 }

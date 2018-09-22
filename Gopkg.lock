@@ -3,19 +3,26 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:75d447ee7c6dfa97f31adfb4f03ce64edfbac3b5b92cebaee708c590d7069ee8"
   name = "github.com/thanhpk/baseconv"
   packages = ["."]
+  pruneopts = "UT"
   revision = "758d96e93935b542e8d1b72a6d1a5e2b7479921a"
 
 [[projects]]
   branch = "master"
+  digest = "1:49cc94d54f5b311c004ebfc2bfc2d25d83a0a5e3c034a16dde29f93600fc6777"
   name = "github.com/thanhpk/randstr"
   packages = ["."]
+  pruneopts = "UT"
   revision = "54b72d72edea0f7ab8190b89c94237730dc6828b"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "bdf6414c254d844e802335c62038d95d2936b176678a874a15ed5b11dbdbb98f"
+  input-imports = [
+    "github.com/thanhpk/baseconv",
+    "github.com/thanhpk/randstr",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1

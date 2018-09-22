@@ -2,10 +2,17 @@ package idgen
 
 import (
 	"errors"
+	"strconv"
+	"strings"
+	"time"
+
 	"github.com/thanhpk/baseconv"
 	"github.com/thanhpk/randstr"
-	"strconv"
-	"time"
+)
+
+const (
+	userPrefix = "us"
+	accPrefix  = "ac"
 )
 
 // New return new random ID
@@ -41,7 +48,7 @@ func NewAgentGroupID() string {
 }
 
 func NewAccountID() string {
-	return generateID("ac", 5)
+	return generateID(accPrefix, 5)
 }
 
 func NewAgentID() string {
@@ -112,7 +119,7 @@ func GetPartitionFromWsConnID(id string) int32 {
 }
 
 func NewUserID() string {
-	return generateID("us", 6)
+	return generateID(userPrefix, 6)
 }
 
 func NewTagID() string {
@@ -193,4 +200,26 @@ func NewIdempotencyKey() string {
 
 func NewPaymentCommentID() string {
 	return generateID("cm", 10)
+}
+
+func IsUserID(id string) bool {
+	if !strings.HasPrefix(id, userPrefix) {
+		return false
+	}
+	ts, err := GetCreated(id, userPrefix)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func IsAccountID(id string) bool {
+	if !strings.HasPrefix(id, accPrefix) {
+		return false
+	}
+	ts, err := GetCreated(id, accPrefix)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
 }
