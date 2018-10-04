@@ -62,6 +62,7 @@ func TestId(t *testing.T) {
 		{"idempotency key", NewIdempotencyKey()},
 		{"comment", NewPaymentCommentID()},
 		{"zero", New0()},
+		{"user note", NewUserNoteID()},
 	}
 	c, err := GetCreated(New0(), "00")
 	fmt.Printf("%d, %v\n", c, err)
@@ -146,6 +147,8 @@ func TestValidateID(t *testing.T) {
 		{"idempotency key", "ikqdbezwcnruezpqgzeaugyohxmjfdbjbfz", IsIdempotencyKey},
 		{"comment", NewPaymentCommentID(), IsPaymentCommentID},
 		{"comment", "cmqdbezwcnruwifmecaxrzqrc", IsPaymentCommentID},
+		{"user note", NewUserNoteID(), IsUserNoteID},
+		{"user note", "ntqdfmydsqqpeevtfeuhntbwd", IsUserNoteID},
 	}
 
 	for _, v := range ids {

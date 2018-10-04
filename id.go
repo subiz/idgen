@@ -47,6 +47,7 @@ const (
 	IDEMPOTENCY_KEY_PREFIX = "ik"
 	PAYMENT_COMMENT_PREFIX = "cm"
 	WS_PREFIX              = "ws"
+	USER_NOTE_PREFIX       = "nt"
 )
 
 // New return new random ID
@@ -632,6 +633,21 @@ func IsPaymentCommentID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, PAYMENT_COMMENT_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func NewUserNoteID() string {
+	return generateID(USER_NOTE_PREFIX, 10)
+}
+
+func IsUserNoteID(id string) bool {
+	if !strings.HasPrefix(id, USER_NOTE_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, USER_NOTE_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
