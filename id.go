@@ -48,6 +48,7 @@ const (
 	PAYMENT_COMMENT_PREFIX = "cm"
 	WS_PREFIX              = "ws"
 	USER_NOTE_PREFIX       = "nt"
+	TICKET_PREFIX          = "tk"
 )
 
 // New return new random ID
@@ -648,6 +649,21 @@ func IsUserNoteID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, USER_NOTE_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func NewTicketID() string {
+	return generateID(TICKET_PREFIX, 10)
+}
+
+func IsTicketID(id string) bool {
+	if !strings.HasPrefix(id, TICKET_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, TICKET_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}

@@ -63,6 +63,7 @@ func TestId(t *testing.T) {
 		{"comment", NewPaymentCommentID()},
 		{"zero", New0()},
 		{"user note", NewUserNoteID()},
+		{"ticket", NewTicketID()},
 	}
 	c, err := GetCreated(New0(), "00")
 	fmt.Printf("%d, %v\n", c, err)
@@ -149,6 +150,8 @@ func TestValidateID(t *testing.T) {
 		{"comment", "cmqdbezwcnruwifmecaxrzqrc", IsPaymentCommentID},
 		{"user note", NewUserNoteID(), IsUserNoteID},
 		{"user note", "ntqdfmydsqqpeevtfeuhntbwd", IsUserNoteID},
+		{"ticket", NewTicketID(), IsTicketID},
+		{"ticket", "tkqdgcajtiakmkflxaneneknj", IsTicketID},
 	}
 
 	for _, v := range ids {
