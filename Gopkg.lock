@@ -11,11 +11,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:49cc94d54f5b311c004ebfc2bfc2d25d83a0a5e3c034a16dde29f93600fc6777"
+  digest = "1:9dbea6ebdf1ee47d6e408601ea2457eda8a5eef4dd2db206fcbaa8a96271d244"
   name = "github.com/thanhpk/randstr"
   packages = ["."]
   pruneopts = "UT"
-  revision = "54b72d72edea0f7ab8190b89c94237730dc6828b"
+  revision = "c5a0f26468db1b2f953bd3e2364a8af3105cfd2e"
 
 [solve-meta]
   analyzer-name = "dep"

@@ -27,7 +27,7 @@ const (
 	ERROR_PREFIX           = "er"
 	WEBHOOK_PREFIX         = "wh"
 	TAG_PREFIX             = "tg"
-	CANNED_RESPONSE_PREFIX = "cn"
+	TEMPLATE_PREFIX        = "tp"
 	FILE_PREFIX            = "fi"
 	BUTTON_PREFIX          = "bt"
 	CHALLENGE_PREFIX       = "ch"
@@ -163,8 +163,8 @@ func NewTagID() string {
 	return generateID(TAG_PREFIX, 5)
 }
 
-func NewCannedResponseID() string {
-	return generateID(CANNED_RESPONSE_PREFIX, 5)
+func NewTemplateID() string {
+	return generateID(TEMPLATE_PREFIX, 5)
 }
 
 func NewFileID() string {
@@ -431,11 +431,11 @@ func IsTagID(id string) bool {
 	return true
 }
 
-func IsCannedResponseID(id string) bool {
-	if !strings.HasPrefix(id, CANNED_RESPONSE_PREFIX) {
+func IsTemplateID(id string) bool {
+	if !strings.HasPrefix(id, TEMPLATE_PREFIX) {
 		return false
 	}
-	ts, err := GetCreated(id, CANNED_RESPONSE_PREFIX)
+	ts, err := GetCreated(id, TEMPLATE_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
