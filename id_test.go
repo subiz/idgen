@@ -65,6 +65,8 @@ func TestId(t *testing.T) {
 		{"zero", New0()},
 		{"user note", NewUserNoteID()},
 		{"ticket", NewTicketID()},
+		{"pipeline", NewPipelineID()},
+		{"stage", NewStageID()},
 	}
 	c, err := GetCreated(New0(), "00")
 	fmt.Printf("%d, %v\n", c, err)
@@ -114,7 +116,7 @@ func TestValidateID(t *testing.T) {
 		{"error", NewErrorID(), IsErrorID},
 		{"error", "erqdbezwcnrjaklhawqau", IsErrorID},
 		{"canned response", NewCannedResponseID(), IsCannedResponseID},
-    {"canned response", "cnqdbezwcnrjrbeceozl", IsCannedResponseID},
+		{"canned response", "cnqdbezwcnrjrbeceozl", IsCannedResponseID},
 		{"template", NewTemplateID(), IsTemplateID},
 		{"template", "tpqdbezwcnrjrbeceozl", IsTemplateID},
 		{"ws conn", NewWsConnID(10), IsWsConnID},
@@ -155,6 +157,10 @@ func TestValidateID(t *testing.T) {
 		{"user note", "ntqdfmydsqqpeevtfeuhntbwd", IsUserNoteID},
 		{"ticket", NewTicketID(), IsTicketID},
 		{"ticket", "tkqdgcajtiakmkflxaneneknj", IsTicketID},
+		{"pipeline", NewPipelineID(), IsPipelineID},
+		{"pipeline", "plqeeknatxuphbskrhlr", IsPipelineID},
+		{"stage", NewStageID(), IsStageID},
+		{"stage", "stqeeknatxupvwilqs", IsStageID},
 	}
 
 	for _, v := range ids {

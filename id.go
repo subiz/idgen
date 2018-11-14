@@ -50,6 +50,8 @@ const (
 	WS_PREFIX              = "ws"
 	USER_NOTE_PREFIX       = "nt"
 	TICKET_PREFIX          = "tk"
+	PIPELINE_PREFIX        = "pl"
+	STAGE_PREFIX           = "st"
 )
 
 // New return new random ID
@@ -165,7 +167,7 @@ func NewTagID() string {
 }
 
 func NewCannedResponseID() string {
- return generateID(CANNED_RESPONSE_PREFIX, 5)
+	return generateID(CANNED_RESPONSE_PREFIX, 5)
 }
 
 func NewTemplateID() string {
@@ -242,6 +244,14 @@ func NewIdempotencyKey() string {
 
 func NewPaymentCommentID() string {
 	return generateID(PAYMENT_COMMENT_PREFIX, 10)
+}
+
+func NewPipelineID() string {
+	return generateID(PIPELINE_PREFIX, 5)
+}
+
+func NewStageID() string {
+	return generateID(STAGE_PREFIX, 3)
 }
 
 func IsUserID(id string) bool {
@@ -680,6 +690,28 @@ func IsTicketID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, TICKET_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func IsPipelineID(id string) bool {
+	if !strings.HasPrefix(id, PIPELINE_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, PIPELINE_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func IsStageID(id string) bool {
+	if !strings.HasPrefix(id, STAGE_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, STAGE_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
