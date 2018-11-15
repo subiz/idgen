@@ -52,6 +52,8 @@ const (
 	TICKET_PREFIX          = "tk"
 	PIPELINE_PREFIX        = "pl"
 	STAGE_PREFIX           = "st"
+	CURRENCY_PREFIX        = "cr"
+	EXCHANGE_RATE_PREFIX   = "ex"
 )
 
 // New return new random ID
@@ -252,6 +254,14 @@ func NewPipelineID() string {
 
 func NewStageID() string {
 	return generateID(STAGE_PREFIX, 3)
+}
+
+func NewCurrencyID() string {
+	return generateID(CURRENCY_PREFIX, 5)
+}
+
+func NewExchangeRateID() string {
+	return generateID(EXCHANGE_RATE_PREFIX, 5)
 }
 
 func IsUserID(id string) bool {
@@ -712,6 +722,28 @@ func IsStageID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, STAGE_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func IsCurrencyID(id string) bool {
+	if !strings.HasPrefix(id, CURRENCY_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, CURRENCY_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func IsExchangeRateID(id string) bool {
+	if !strings.HasPrefix(id, EXCHANGE_RATE_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, EXCHANGE_RATE_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
