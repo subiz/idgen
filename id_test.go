@@ -13,6 +13,14 @@ func TestCreated(t *testing.T) {
 			t.Fatalf("should be %d, got %d", 1537588731096863554, c)
 		}
 	}
+
+	if c, err := GetCreated("evaaaaaaaaaaaaaaa", "ev"); err != nil {
+		t.Fatal(err)
+	} else {
+		if c != 0 {
+			t.Fatalf("should be %d, got %d", 0, c)
+		}
+	}
 }
 
 func TestId(t *testing.T) {

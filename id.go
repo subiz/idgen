@@ -79,8 +79,7 @@ func GetCreated(id, prefix string) (int64, error) {
 		return 0, errors.New("id too short")
 	}
 	// 12 or 13??
-	iii := id[len(prefix) : 13+len(prefix)]
-	return parseInt(iii, 26, 0)
+	return parseInt26(id[len(prefix) : 13+len(prefix)])
 }
 
 func New0() string {
