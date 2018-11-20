@@ -2,12 +2,10 @@ package idgen
 
 import (
 	"errors"
+	mathrand "math/rand"
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/thanhpk/baseconv"
-	"github.com/thanhpk/randstr"
 )
 
 const (
@@ -57,15 +55,23 @@ const (
 )
 
 // New return new random ID
-func New() string {
-	newid := generateID("", 2)
-	return newid
-}
+func New() string { return generateID("", 2) }
+
+func init() { mathrand.Seed(time.Now().UnixNano()) }
+
+// letterRunes (read-only) contains all runes which can be used in an ID
+var letterRunes = []rune("abcdefghijklmnopqrstuvwxyz")
 
 func generateID(sign string, randomfactor int) string {
-	nowstr := strconv.FormatInt(time.Now().UnixNano(), 10)
-	timestr, _ := baseconv.Convert(nowstr, baseconv.DigitsDec, "abcdefghijklmnopqrstuvwxyz")
-	return sign + timestr + randstr.RandomString(randomfactor, "abcdefghijklmnopqrstuvwxyz")
+	var sb strings.Builder
+	sb.WriteString(sign)
+
+	nowstr := formatInt(time.Now().UnixNano(), 26)
+	sb.WriteString(nowstr)
+	for i := 0; i < randomfactor; i++ {
+		sb.WriteRune(letterRunes[mathrand.Intn(len(letterRunes))])
+	}
+	return sb.String()
 }
 
 func GetCreated(id, prefix string) (int64, error) {
@@ -73,11 +79,7 @@ func GetCreated(id, prefix string) (int64, error) {
 		return 0, errors.New("id too short")
 	}
 	// 12 or 13??
-	timestr, err := baseconv.Convert(id[len(prefix):13+len(prefix)], "abcdefghijklmnopqrstuvwxyz", baseconv.DigitsDec)
-	if err != nil {
-		return 0, err
-	}
-	return strconv.ParseInt(timestr, 10, 0)
+	return /// parseInt(id[len(prefix):13+len(prefix)], 26, 0)
 }
 
 func New0() string {

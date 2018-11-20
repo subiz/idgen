@@ -78,6 +78,12 @@ func TestId(t *testing.T) {
 	}
 }
 
+func BenchmarkGenID(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		NewEventID()
+	}
+}
+
 func TestValidateID(t *testing.T) {
 	ids := []struct {
 		name, id string
