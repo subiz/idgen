@@ -2,7 +2,7 @@ package idgen
 
 import (
 	"errors"
-	mathrand "math/rand"
+	"math/rand"
 	"strconv"
 	"strings"
 	"time"
@@ -57,7 +57,7 @@ const (
 // New return new random ID
 func New() string { return generateID("", 2) }
 
-func init() { mathrand.Seed(time.Now().UnixNano()) }
+func init() { rand.Seed(time.Now().UnixNano()) }
 
 // letterRunes (read-only) contains all runes which can be used in an ID
 var letterRunes = []rune("abcdefghijklmnopqrstuvwxyz")
@@ -69,7 +69,7 @@ func generateID(sign string, randomfactor int) string {
 	nowstr := formatInt(time.Now().UnixNano(), 26)
 	sb.WriteString(nowstr)
 	for i := 0; i < randomfactor; i++ {
-		sb.WriteRune(letterRunes[mathrand.Intn(len(letterRunes))])
+		sb.WriteRune(letterRunes[rand.Intn(len(letterRunes))])
 	}
 	return sb.String()
 }
@@ -79,7 +79,8 @@ func GetCreated(id, prefix string) (int64, error) {
 		return 0, errors.New("id too short")
 	}
 	// 12 or 13??
-	return /// parseInt(id[len(prefix):13+len(prefix)], 26, 0)
+	iii := id[len(prefix) : 13+len(prefix)]
+	return parseInt(iii, 26, 0)
 }
 
 func New0() string {

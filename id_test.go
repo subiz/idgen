@@ -3,22 +3,15 @@ package idgen
 import (
 	"fmt"
 	"testing"
-	"time"
-
-	"github.com/thanhpk/baseconv"
 )
 
 func TestCreated(t *testing.T) {
-	nowstr := "14324234234"
-	timestr, _ := baseconv.Convert(nowstr, baseconv.DigitsDec, "abcdefghijklmnopqrstuvwxyz")
-	println("xxxxxx", timestr)
-
-	created, err := GetCreated("evaaaaaaaaaaaaaaaaaaa", "ev")
-	println(time.Unix(0, created).Format(time.RFC3339Nano), err)
-	if _, err := GetCreated("evqcxzkihetmvosjgvhctilzx", "ev"); err != nil {
-		//"evqalufuxphqubrufrnqbgcgf"
-		//"00qalufuxpijiao"
+	if c, err := GetCreated("evqcxzkihetmvosjgvhctilzx", "ev"); err != nil {
 		t.Fatal(err)
+	} else {
+		if c != 1537588731096863554 {
+			t.Fatalf("should be %d, got %d", 1537588731096863554, c)
+		}
 	}
 }
 
@@ -175,8 +168,8 @@ func TestValidateID(t *testing.T) {
 
 	for _, v := range ids {
 		isValid := v.f(v.id)
-		// fmt.Printf("%s - %s: %t\n", v.name, v.id, isValid)
 		if !isValid {
+			fmt.Printf("%s - %s: %t\n", v.name, v.id, isValid)
 			t.FailNow()
 		}
 	}
