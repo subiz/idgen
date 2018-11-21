@@ -52,6 +52,7 @@ const (
 	STAGE_PREFIX           = "st"
 	CURRENCY_PREFIX        = "cr"
 	EXCHANGE_RATE_PREFIX   = "ex"
+	SLA_PREFIX             = "sa"
 )
 
 // New return new random ID
@@ -264,6 +265,10 @@ func NewCurrencyID() string {
 
 func NewExchangeRateID() string {
 	return generateID(EXCHANGE_RATE_PREFIX, 5)
+}
+
+func NewServiceLevelAgreementID() string {
+	return generateID(SLA_PREFIX, 5)
 }
 
 func IsUserID(id string) bool {
@@ -746,6 +751,17 @@ func IsExchangeRateID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, EXCHANGE_RATE_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func IsServiceLevelAgreementID(id string) bool {
+	if !strings.HasPrefix(id, SLA_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, SLA_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}

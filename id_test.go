@@ -70,6 +70,7 @@ func TestId(t *testing.T) {
 		{"stage", NewStageID()},
 		{"currency", NewCurrencyID()},
 		{"exchange rate", NewExchangeRateID()},
+		{"service level agreement", NewServiceLevelAgreementID()},
 	}
 	c, err := GetCreated(New0(), "00")
 	fmt.Printf("%d, %v\n", c, err)
@@ -172,6 +173,7 @@ func TestValidateID(t *testing.T) {
 		{"stage", "stqeeknatxupvwilqs", IsStageID},
 		{"currency", "crqefeeclybkbzsjsjza", IsCurrencyID},
 		{"exchange rate", "exqefeeclybkquiinjkv", IsExchangeRateID},
+		{"service level agreement", "saqeisueoyxujncwgvza", IsServiceLevelAgreementID},
 	}
 
 	for _, v := range ids {
