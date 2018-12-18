@@ -71,6 +71,7 @@ func TestId(t *testing.T) {
 		{"currency", NewCurrencyID()},
 		{"exchange rate", NewExchangeRateID()},
 		{"service level agreement", NewServiceLevelAgreementID()},
+		{"referer", NewRefererID()},
 	}
 	c, err := GetCreated(New0(), "00")
 	fmt.Printf("%d, %v\n", c, err)
