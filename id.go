@@ -53,7 +53,6 @@ const (
 	CURRENCY_PREFIX        = "cr"
 	EXCHANGE_RATE_PREFIX   = "ex"
 	SLA_PREFIX             = "sa"
-	REFERRER_PREFIX        = "rf"
 )
 
 // New return new random ID
@@ -178,10 +177,6 @@ func NewCannedResponseID() string {
 
 func NewTemplateID() string {
 	return generateID(TEMPLATE_PREFIX, 5)
-}
-
-func NewReferrerID() string {
-	return generateID(REFERRER_PREFIX, 5)
 }
 
 func NewFileID() string {
