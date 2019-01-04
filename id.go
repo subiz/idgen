@@ -53,6 +53,7 @@ const (
 	CURRENCY_PREFIX        = "cr"
 	EXCHANGE_RATE_PREFIX   = "ex"
 	SLA_PREFIX             = "sa"
+	REFER_PREFIX           = "rf"
 )
 
 // New return new random ID
@@ -85,6 +86,10 @@ func GetCreated(id, prefix string) (int64, error) {
 
 func New0() string {
 	return generateID("00", 0)
+}
+
+func NewReferrerID() string {
+	return generateID(REFER_PREFIX, 3)
 }
 
 func NewAgentGroupID() string {
