@@ -54,6 +54,7 @@ const (
 	EXCHANGE_RATE_PREFIX   = "ex"
 	SLA_PREFIX             = "sa"
 	REFER_PREFIX           = "rf"
+	PROMOTION_CODE_PREFIX  = "pc"
 )
 
 // New return new random ID
@@ -118,6 +119,10 @@ func NewConversationID() string {
 
 func NewScheduleItemID() string {
 	return generateID(SCHEDULE_ITEM_PREFIX, 20)
+}
+
+func NewPromotionCodeID() string {
+	return generateID(PROMOTION_CODE_PREFIX, 2)
 }
 
 func NewWebsendID() string {
