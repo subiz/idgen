@@ -55,6 +55,7 @@ const (
 	SLA_PREFIX             = "sa"
 	REFER_PREFIX           = "rf"
 	PROMOTION_CODE_PREFIX  = "pc"
+	BOT_REPLY              = "br"
 )
 
 // New return new random ID
@@ -87,6 +88,10 @@ func GetCreated(id, prefix string) (int64, error) {
 
 func New0() string {
 	return generateID("00", 0)
+}
+
+func NewBotID() string {
+	return generateID(BOT_REPLY, 3)
 }
 
 func NewReferrerID() string {
