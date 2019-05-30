@@ -57,6 +57,7 @@ const (
 	PROMOTION_CODE_PREFIX    = "pc"
 	BOT_REPLY                = "br"
 	AUTOMATION_ACTION_PREFIX = "aa"
+	BACKOFF_PREFIX           = "bo"
 )
 
 // New return new random ID
@@ -285,6 +286,10 @@ func NewExchangeRateID() string {
 
 func NewServiceLevelAgreementID() string {
 	return generateID(SLA_PREFIX, 5)
+}
+
+func NewBackoffID() string {
+	return generateID(BACKOFF_PREFIX, 10)
 }
 
 func IsUserID(id string) bool {

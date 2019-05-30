@@ -5,24 +5,6 @@ import (
 	"testing"
 )
 
-func TestCreated(t *testing.T) {
-	if c, err := GetCreated("evqcxzkihetmvosjgvhctilzx", "ev"); err != nil {
-		t.Fatal(err)
-	} else {
-		if c != 1537588731096863554 {
-			t.Fatalf("should be %d, got %d", 1537588731096863554, c)
-		}
-	}
-
-	if c, err := GetCreated("evaaaaaaaaaaaaaaa", "ev"); err != nil {
-		t.Fatal(err)
-	} else {
-		if c != 0 {
-			t.Fatalf("should be %d, got %d", 0, c)
-		}
-	}
-}
-
 func TestId(t *testing.T) {
 	ids := []struct {
 		name, id string
@@ -72,6 +54,7 @@ func TestId(t *testing.T) {
 		{"exchange rate", NewExchangeRateID()},
 		{"service level agreement", NewServiceLevelAgreementID()},
 		{"automation action", NewAutomationActionID()},
+		{"backoff", NewBackoffID()},
 	}
 	c, err := GetCreated(New0(), "00")
 	fmt.Printf("%d, %v\n", c, err)
