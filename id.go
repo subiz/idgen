@@ -58,6 +58,10 @@ const (
 	BOT_REPLY                = "br"
 	AUTOMATION_ACTION_PREFIX = "aa"
 	BACKOFF_PREFIX           = "bo"
+	GOALSTATUS_PREFIX        = "gs"
+	CONVERSION_PREFIX        = "cv"
+	IMPRESSION_PREFIX        = "ip"
+	CAMPAIGN_PREFIX          = "cp"
 )
 
 // New return new random ID
@@ -791,4 +795,20 @@ func IsServiceLevelAgreementID(id string) bool {
 
 func NewAutomationActionID() string {
 	return generateID(AUTOMATION_ACTION_PREFIX, 6)
+}
+
+func NewCampaignId() string {
+	return generateID(CAMPAIGN_PREFIX, 6)
+}
+
+func NewConversionId() string {
+	return generateID(CONVERSION_PREFIX, 6)
+}
+
+func NewGoalStatusId() string {
+	return generateID(GOALSTATUS_PREFIX, 6)
+}
+
+func NewImpressionId() string {
+	return generateID(IMPRESSION_PREFIX, 6)
 }
