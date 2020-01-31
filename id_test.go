@@ -55,6 +55,7 @@ func TestId(t *testing.T) {
 		{"service level agreement", NewServiceLevelAgreementID()},
 		{"automation action", NewAutomationActionID()},
 		{"backoff", NewBackoffID()},
+		{"polling conn", NewPollingConnId("4", "ac555", "ag111")},
 	}
 	c, err := GetCreated(New0(), "00")
 	fmt.Printf("%d, %v\n", c, err)
@@ -158,6 +159,7 @@ func TestValidateID(t *testing.T) {
 		{"currency", "crqefeeclybkbzsjsjza", IsCurrencyID},
 		{"exchange rate", "exqefeeclybkquiinjkv", IsExchangeRateID},
 		{"service level agreement", "saqeisueoyxujncwgvza", IsServiceLevelAgreementID},
+		{"polling connection", NewPollingConnId("4", "ac555", "ag111"), IsPollingConnID},
 	}
 
 	for _, v := range ids {

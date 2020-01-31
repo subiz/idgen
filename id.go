@@ -62,6 +62,7 @@ const (
 	CONVERSION_PREFIX        = "cv"
 	IMPRESSION_PREFIX        = "ip"
 	CAMPAIGN_PREFIX          = "cp"
+	POLLINGCONNECTION_PREFIX = "co"
 )
 
 // New return new random ID
@@ -165,13 +166,25 @@ func NewWebhookID() string {
 	return generateID(WEBHOOK_PREFIX, 6)
 }
 
+func NewPollingConnId(host, accid, userid string) string {
+	return POLLINGCONNECTION_PREFIX + "_" + host + "_" + accid + "_" + userid + "_" + generateID("", 4)
+}
+
+func ExtractPollingConnId(connid string) (host, accid, userid string) {
+	if !IsPollingConnID(connid) {
+		return "", "", ""
+	}
+	sp := strings.Split(connid, "_")
+	return sp[1], sp[2], sp[3]
+}
+
 func NewWsConnID(partition int32) string {
 	return strconv.Itoa(int(partition)) + "p" + generateID(WS_PREFIX, 20)
 }
 
 func GetPartitionFromWsConnID(id string) int32 {
 	for i := 0; i < len(id); i++ {
-		if id[i] != "p"[0] {
+		if id[i] != 'p' {
 			continue
 		}
 		par := id[:i]
@@ -755,6 +768,18 @@ func IsStageID(id string) bool {
 	}
 	ts, err := GetCreated(id, STAGE_PREFIX)
 	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func IsPollingConnID(id string) bool {
+	sp := strings.Split(id, "_")
+	if len(sp) != 5 {
+		return false
+	}
+
+	if sp[0] != POLLINGCONNECTION_PREFIX {
 		return false
 	}
 	return true
