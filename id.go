@@ -56,6 +56,7 @@ const (
 	REFER_PREFIX             = "rf"
 	PROMOTION_CODE_PREFIX    = "pc"
 	BOT_REPLY                = "br"
+	BIZBOT_PREFIX            = "bb"
 	AUTOMATION_ACTION_PREFIX = "aa"
 	BACKOFF_PREFIX           = "bo"
 	GOALSTATUS_PREFIX        = "gs"
@@ -95,6 +96,10 @@ func GetCreated(id, prefix string) (int64, error) {
 
 func New0() string {
 	return generateID("00", 0)
+}
+
+func NewBizbotID() string {
+	return generateID(BIZBOT_PREFIX, 3)
 }
 
 func NewBotID() string {
