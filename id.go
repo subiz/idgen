@@ -823,6 +823,17 @@ func IsServiceLevelAgreementID(id string) bool {
 	return true
 }
 
+func IsBizbotID(id string) bool {
+	if !strings.HasPrefix(id, BIZBOT_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, BIZBOT_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
 func NewAutomationActionID() string {
 	return generateID(AUTOMATION_ACTION_PREFIX, 6)
 }
