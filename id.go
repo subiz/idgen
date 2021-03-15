@@ -64,6 +64,7 @@ const (
 	IMPRESSION_PREFIX        = "ip"
 	CAMPAIGN_PREFIX          = "cp"
 	POLLINGCONNECTION_PREFIX = "co"
+	COMPACTED_KEY_PREFIX     = "ck"
 )
 
 // New return new random ID
@@ -96,6 +97,10 @@ func GetCreated(id, prefix string) (int64, error) {
 
 func New0() string {
 	return generateID("00", 0)
+}
+
+func NewCompactedKeyID() string {
+	return generateID(COMPACTED_KEY_PREFIX, 3)
 }
 
 func NewBizbotID() string {
@@ -828,6 +833,17 @@ func IsBizbotID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, BIZBOT_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func IsCompactedKeyID(id string) bool {
+	if !strings.HasPrefix(id, COMPACTED_KEY_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, COMPACTED_KEY_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
