@@ -65,6 +65,7 @@ const (
 	CAMPAIGN_PREFIX          = "cp"
 	POLLINGCONNECTION_PREFIX = "co"
 	COMPACTED_KEY_PREFIX     = "ck"
+	USERVIEW_PREFIX          = "uw"
 )
 
 // New return new random ID
@@ -868,4 +869,8 @@ func NewGoalStatusId() string {
 
 func NewImpressionId() string {
 	return generateID(IMPRESSION_PREFIX, 6)
+}
+
+func NewUserViewId() string {
+	return generateID(USERVIEW_PREFIX, 4)
 }
