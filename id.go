@@ -66,6 +66,7 @@ const (
 	POLLINGCONNECTION_PREFIX = "co"
 	COMPACTED_KEY_PREFIX     = "ck"
 	USERVIEW_PREFIX          = "uw"
+	PRODUCT_PREFIX           = "pt"
 )
 
 // New return new random ID
@@ -98,6 +99,10 @@ func GetCreated(id, prefix string) (int64, error) {
 
 func New0() string {
 	return generateID("00", 0)
+}
+
+func NewProductID() string {
+	return generateID(PRODUCT_PREFIX, 3)
 }
 
 func NewCompactedKeyID() string {
@@ -845,6 +850,17 @@ func IsCompactedKeyID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, COMPACTED_KEY_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func IsProductID(id string) bool {
+	if !strings.HasPrefix(id, PRODUCT_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, PRODUCT_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
