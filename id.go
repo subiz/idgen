@@ -89,6 +89,18 @@ func generateID(sign string, randomfactor int) string {
 	return sb.String()
 }
 
+func generateUnixNanoID(sign string, randomfactor int, unixNano int64) string {
+	var sb strings.Builder
+	sb.WriteString(sign)
+
+	nowstr := formatInt(unixNano, 26)
+	sb.WriteString(nowstr)
+	for i := 0; i < randomfactor; i++ {
+		sb.WriteRune(letterRunes[rand.Intn(len(letterRunes))])
+	}
+	return sb.String()
+}
+
 func GetCreated(id, prefix string) (int64, error) {
 	if len(id)-len(prefix) < 13 {
 		return 0, errors.New("id too short")
@@ -143,6 +155,10 @@ func NewEventID() string {
 
 func NewConversationID() string {
 	return generateID(CONVERSATION_PREFIX, 3)
+}
+
+func ConversationId(unixNano int64) string {
+	return generateUnixNanoID(CONVERSATION_PREFIX, 3, unixNano)
 }
 
 func NewScheduleItemID() string {
@@ -263,6 +279,10 @@ func NewAutomationID() string {
 
 func NewUserSessionID() string {
 	return generateID(USER_SESSION_PREFIX, 6)
+}
+
+func UserSessionId(unixNano int64) string {
+	return generateUnixNanoID(USER_SESSION_PREFIX, 6, unixNano)
 }
 
 func NewBillingID() string {
