@@ -67,6 +67,8 @@ const (
 	COMPACTED_KEY_PREFIX     = "ck"
 	USERVIEW_PREFIX          = "uw"
 	PRODUCT_PREFIX           = "pt"
+	POS_PREFIX               = "ps"
+	ORDER_ITEM_PREFIX        = "oi"
 )
 
 // New return new random ID
@@ -909,4 +911,12 @@ func NewImpressionId() string {
 
 func NewUserViewId() string {
 	return generateID(USERVIEW_PREFIX, 4)
+}
+
+func NewPosId() string {
+	return generateID(POS_PREFIX, 4)
+}
+
+func NewOrderItemId() string {
+	return generateID(ORDER_ITEM_PREFIX, 4)
 }
