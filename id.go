@@ -69,6 +69,7 @@ const (
 	PRODUCT_PREFIX           = "pt"
 	POS_PREFIX               = "ps"
 	ORDER_ITEM_PREFIX        = "oi"
+	TAX_PREFIX               = "ta"
 )
 
 // New return new random ID
@@ -919,4 +920,8 @@ func NewPosId() string {
 
 func NewOrderItemId() string {
 	return generateID(ORDER_ITEM_PREFIX, 4)
+}
+
+func NewTaxId() string {
+	return generateID(TAX_PREFIX, 5)
 }
