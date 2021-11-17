@@ -58,9 +58,6 @@ const (
 	BOT_REPLY                = "br"
 	BIZBOT_PREFIX            = "bb"
 	AUTOMATION_ACTION_PREFIX = "aa"
-	BACKOFF_PREFIX           = "bo"
-	GOALSTATUS_PREFIX        = "gs"
-	CONVERSION_PREFIX        = "cv"
 	IMPRESSION_PREFIX        = "ip"
 	CAMPAIGN_PREFIX          = "cp"
 	POLLINGCONNECTION_PREFIX = "co"
@@ -70,6 +67,7 @@ const (
 	POS_PREFIX               = "ps"
 	ORDER_ITEM_PREFIX        = "oi"
 	TAX_PREFIX               = "ta"
+	ADDRESS_PREFIX           = "ad"
 )
 
 // New return new random ID
@@ -342,10 +340,6 @@ func NewExchangeRateID() string {
 
 func NewServiceLevelAgreementID() string {
 	return generateID(SLA_PREFIX, 5)
-}
-
-func NewBackoffID() string {
-	return generateID(BACKOFF_PREFIX, 10)
 }
 
 func IsUserID(id string) bool {
@@ -898,14 +892,6 @@ func NewCampaignId() string {
 	return generateID(CAMPAIGN_PREFIX, 6)
 }
 
-func NewConversionId() string {
-	return generateID(CONVERSION_PREFIX, 6)
-}
-
-func NewGoalStatusId() string {
-	return generateID(GOALSTATUS_PREFIX, 6)
-}
-
 func NewImpressionId() string {
 	return generateID(IMPRESSION_PREFIX, 6)
 }
@@ -924,4 +910,8 @@ func NewOrderItemId() string {
 
 func NewTaxId() string {
 	return generateID(TAX_PREFIX, 5)
+}
+
+func NewAddressId() string {
+	return generateID(ADDRESS_PREFIX, 5)
 }

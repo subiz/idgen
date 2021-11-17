@@ -54,8 +54,11 @@ func TestId(t *testing.T) {
 		{"exchange rate", NewExchangeRateID()},
 		{"service level agreement", NewServiceLevelAgreementID()},
 		{"automation action", NewAutomationActionID()},
-		{"backoff", NewBackoffID()},
 		{"polling conn", NewPollingConnId("4", "ac555", "ag111")},
+		{"pos", NewPosId()},
+		{"order item", NewOrderItemId()},
+		{"tax", NewTaxId()},
+		{"address", NewAddressId()},
 	}
 	c, err := GetCreated(New0(), "00")
 	fmt.Printf("%d, %v\n", c, err)
