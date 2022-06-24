@@ -3,6 +3,7 @@ package idgen
 import (
 	"fmt"
 	"testing"
+	"time"
 )
 
 func TestId(t *testing.T) {
@@ -72,6 +73,16 @@ func BenchmarkGenID(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		NewEventID()
 	}
+}
+
+func TestGetCreated( t *testing.T) {
+	i, err := GetCreated("usqvwjapjmaczipypeksl", "us")
+	if err != nil {
+		panic(err)
+	}
+
+
+	fmt.Println(time.Unix(0, i))
 }
 
 func TestValidateID(t *testing.T) {
