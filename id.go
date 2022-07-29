@@ -923,5 +923,5 @@ func NewShippingPolicy() string {
 }
 
 func NewPhoneDevice() string {
-	return generateID(PHONE_DEVICE_PREFIX, 4)
+	return generateID(PHONE_DEVICE_PREFIX, 2)
 }
