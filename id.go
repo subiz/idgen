@@ -70,6 +70,7 @@ const (
 	ADDRESS_PREFIX           = "ad"
 	SHIPPING_POLICY_PREFIX   = "sp"
 	PHONE_DEVICE_PREFIX      = "ph"
+	API_TOKEN_PREFIX         = "ai"
 )
 
 // New return new random ID
@@ -922,6 +923,10 @@ func NewShippingPolicy() string {
 	return generateID(SHIPPING_POLICY_PREFIX, 5)
 }
 
-func NewPhoneDevice() string {
+func NewPhoneDeviceId() string {
 	return generateID(PHONE_DEVICE_PREFIX, 2)
+}
+
+func NewApiTokenId() string {
+	return generateID(API_TOKEN_PREFIX, 5)
 }

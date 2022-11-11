@@ -76,13 +76,15 @@ func BenchmarkGenID(b *testing.B) {
 }
 
 func TestGetCreated( t *testing.T) {
-	i, err := GetCreated("usqvwjapjmaczipypeksl", "us")
+	// idgen.GetCreated("cs",)
+
+	i, err := GetCreated("usrkzcdpxxxhppxjzogmp", "cs")
 	if err != nil {
 		panic(err)
 	}
 
 
-	fmt.Println(time.Unix(0, i))
+	fmt.Println(time.Unix(0, i).Unix() / 3600)
 }
 
 func TestValidateID(t *testing.T) {
