@@ -776,6 +776,7 @@ func NewTicketID() string {
 	return generateID(TICKET_PREFIX, 10)
 }
 
+//
 func IsTicketID(id string) bool {
 	if !strings.HasPrefix(id, TICKET_PREFIX) {
 		return false
