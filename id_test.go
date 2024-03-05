@@ -75,14 +75,13 @@ func BenchmarkGenID(b *testing.B) {
 	}
 }
 
-func TestGetCreated( t *testing.T) {
+func TestGetCreated(t *testing.T) {
 	// idgen.GetCreated("cs",)
 
 	i, err := GetCreated("usrkzcdpxxxhppxjzogmp", "cs")
 	if err != nil {
 		panic(err)
 	}
-
 
 	fmt.Println(time.Unix(0, i).Unix() / 3600)
 }
