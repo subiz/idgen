@@ -50,6 +50,7 @@ const (
 	TICKET_PREFIX            = "tk"
 	TICKET_TYPE_PREFIX       = "tt"
 	TICKET_VIEW_PREFIX       = "tv"
+	TICKET_TEMPLATE_PREFIX   = "tm"
 	PIPELINE_PREFIX          = "pl"
 	STAGE_PREFIX             = "st"
 	CURRENCY_PREFIX          = "cr"
@@ -797,6 +798,10 @@ func NewTicketViewID() string {
 	return generateID(TICKET_VIEW_PREFIX, 10)
 }
 
+func NewTicketTemplateID() string {
+	return generateID(TICKET_TEMPLATE_PREFIX, 10)
+}
+
 func IsTicketTypeID(id string) bool {
 	if !strings.HasPrefix(id, TICKET_TYPE_PREFIX) {
 		return false
@@ -813,6 +818,17 @@ func IsTicketViewID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, TICKET_VIEW_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func IsTicketTemplateID(id string) bool {
+	if !strings.HasPrefix(id, TICKET_TEMPLATE_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, TICKET_TEMPLATE_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
