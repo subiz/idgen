@@ -74,6 +74,7 @@ const (
 	SHIPPING_POLICY_PREFIX   = "sp"
 	PHONE_DEVICE_PREFIX      = "ph"
 	API_TOKEN_PREFIX         = "ai"
+	GOROUTINE_PREFIX         = "gr"
 )
 
 // New return new random ID
@@ -802,6 +803,10 @@ func NewTicketTemplateID() string {
 	return generateID(TICKET_TEMPLATE_PREFIX, 10)
 }
 
+func NewGoroutineID() string {
+	return generateID(GOROUTINE_PREFIX, 10)
+}
+
 func IsTicketTypeID(id string) bool {
 	if !strings.HasPrefix(id, TICKET_TYPE_PREFIX) {
 		return false
@@ -829,6 +834,17 @@ func IsTicketTemplateID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, TICKET_TEMPLATE_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func IsGoroutineID(id string) bool {
+	if !strings.HasPrefix(id, GOROUTINE_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, GOROUTINE_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
