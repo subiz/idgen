@@ -74,7 +74,7 @@ const (
 	SHIPPING_POLICY_PREFIX   = "sp"
 	PHONE_DEVICE_PREFIX      = "ph"
 	API_TOKEN_PREFIX         = "ai"
-	GOROUTINE_PREFIX         = "gr"
+	GOROUTINE_PREFIX         = "go"
 )
 
 // New return new random ID
