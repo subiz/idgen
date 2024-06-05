@@ -76,6 +76,8 @@ const (
 	API_TOKEN_PREFIX         = "ai"
 	GOROUTINE_PREFIX         = "go"
 	SLA_POLICY_PREFIX        = "sl"
+	ARTICLE_PREFIX           = "ar"
+	ARTICLE_CATEGORY_PREFIX  = "al"
 )
 
 // New return new random ID
@@ -812,6 +814,14 @@ func NewSlaPolicyID() string {
 	return generateID(SLA_POLICY_PREFIX, 10)
 }
 
+func NewArticleID() string {
+	return generateID(ARTICLE_PREFIX, 10)
+}
+
+func NewArticleCategoryID() string {
+	return generateID(ARTICLE_CATEGORY_PREFIX, 10)
+}
+
 func IsTicketTypeID(id string) bool {
 	if !strings.HasPrefix(id, TICKET_TYPE_PREFIX) {
 		return false
@@ -861,6 +871,28 @@ func IsSlaPolicyID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, SLA_POLICY_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func IsArticleID(id string) bool {
+	if !strings.HasPrefix(id, ARTICLE_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, ARTICLE_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func IsArticleCategoryID(id string) bool {
+	if !strings.HasPrefix(id, ARTICLE_CATEGORY_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, ARTICLE_CATEGORY_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
