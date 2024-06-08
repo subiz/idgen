@@ -27,7 +27,6 @@ func TestId(t *testing.T) {
 		{"rule", NewRuleID()},
 		{"client", NewClientID()},
 		{"error", NewErrorID()},
-		{"canned response", NewCannedResponseID()},
 		{"template", NewTemplateID()},
 		{"ws conn", NewWsConnID(10)},
 		{"challenge", NewChallengeID()},
@@ -78,12 +77,16 @@ func BenchmarkGenID(b *testing.B) {
 func TestGetCreated(t *testing.T) {
 	// idgen.GetCreated("cs",)
 
-	i, err := GetCreated("usrkzcdpxxxhppxjzogmp", "cs")
+	i, err := GetCreated("csrztmfqahgubyfmbz", "cs")
 	if err != nil {
 		panic(err)
 	}
 
 	fmt.Println(time.Unix(0, i).Unix() / 3600)
+	// SELECT * from user.users WHERE account_id='acqsulrowbxiugvginhw' and user_id='usrngmzwtjxqrufnnbprn' and hour=464145;
+
+	fmt.Println(time.Unix(0, i).Unix()/3600, i/1000000)
+	fmt.Println(time.Unix(0, i))
 }
 
 func TestValidateID(t *testing.T) {
@@ -125,8 +128,6 @@ func TestValidateID(t *testing.T) {
 		{"client", "clqdbezwcnrijqvkwigot", IsClientID},
 		{"error", NewErrorID(), IsErrorID},
 		{"error", "erqdbezwcnrjaklhawqau", IsErrorID},
-		{"canned response", NewCannedResponseID(), IsCannedResponseID},
-		{"canned response", "cnqdbezwcnrjrbeceozl", IsCannedResponseID},
 		{"template", NewTemplateID(), IsTemplateID},
 		{"template", "tpqdbezwcnrjrbeceozl", IsTemplateID},
 		{"ws conn", NewWsConnID(10), IsWsConnID},

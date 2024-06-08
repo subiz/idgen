@@ -25,7 +25,6 @@ const (
 	ERROR_PREFIX             = "er"
 	WEBHOOK_PREFIX           = "wh"
 	TAG_PREFIX               = "tg"
-	CANNED_RESPONSE_PREFIX   = "cn"
 	TEMPLATE_PREFIX          = "tp"
 	FILE_PREFIX              = "fi"
 	BUTTON_PREFIX            = "bt"
@@ -78,12 +77,11 @@ const (
 	SLA_POLICY_PREFIX        = "sl"
 	ARTICLE_PREFIX           = "ar"
 	ARTICLE_CATEGORY_PREFIX  = "al"
+	JOB_PREFIX               = "jb"
 )
 
 // New return new random ID
 func New() string { return generateID("", 2) }
-
-func init() { rand.Seed(time.Now().UnixNano()) }
 
 // letterRunes (read-only) contains all runes which can be used in an ID
 var letterRunes = []rune("abcdefghijklmnopqrstuvwxyz")
@@ -246,10 +244,6 @@ func NewUserID() string {
 
 func NewTagID() string {
 	return generateID(TAG_PREFIX, 5)
-}
-
-func NewCannedResponseID() string {
-	return generateID(CANNED_RESPONSE_PREFIX, 5)
 }
 
 func NewTemplateID() string {
@@ -538,17 +532,6 @@ func IsTagID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, TAG_PREFIX)
-	if err != nil || ts <= 0 {
-		return false
-	}
-	return true
-}
-
-func IsCannedResponseID(id string) bool {
-	if !strings.HasPrefix(id, CANNED_RESPONSE_PREFIX) {
-		return false
-	}
-	ts, err := GetCreated(id, CANNED_RESPONSE_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
@@ -1041,4 +1024,8 @@ func NewPhoneDeviceId() string {
 
 func NewApiTokenId() string {
 	return generateID(API_TOKEN_PREFIX, 5)
+}
+
+func NewJobId() string {
+	return generateID(JOB_PREFIX, 25)
 }
