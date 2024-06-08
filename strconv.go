@@ -10,19 +10,6 @@ func formatInt(i int64, base int) string {
 	return s
 }
 
-const smallsString = "00010203040506070809" +
-	"10111213141516171819" +
-	"20212223242526272829" +
-	"30313233343536373839" +
-	"40414243444546474849" +
-	"50515253545556575859" +
-	"60616263646566676869" +
-	"70717273747576777879" +
-	"80818283848586878889" +
-	"90919293949596979899"
-
-const host32bit = ^uint(0)>>32 == 0
-
 const digits = "abcdefghijklmnopqrstuvwxyz"
 
 // formatBits computes the string representation of u in the given base.
@@ -73,8 +60,6 @@ func formatBits(dst []byte, u uint64, base int, neg, append_ bool) (d []byte, s 
 }
 
 func parseInt26(s string) (i int64, err error) {
-	const fnParseInt = "ParseInt"
-
 	// Empty string bad.
 	if len(s) == 0 {
 		return 0, errors.New("empty string")
@@ -86,8 +71,6 @@ func parseInt26(s string) (i int64, err error) {
 }
 
 func ParseUint(s string, base int) (uint64, error) {
-	const fnParseUint = "ParseUint"
-
 	if len(s) == 0 {
 		return 0, errors.New("invalid syntax")
 	}
@@ -96,8 +79,7 @@ func ParseUint(s string, base int) (uint64, error) {
 
 	// Cutoff is the smallest number such that cutoff*base > maxUint64.
 	// Use compile-time constants for common cases.
-	var cutoff uint64
-	cutoff = maxUint64/uint64(base) + 1
+	cutoff := maxUint64/uint64(base) + 1
 	maxVal := uint64(1)<<uint(bitSize) - 1
 
 	var n uint64

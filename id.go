@@ -17,20 +17,15 @@ const (
 	EVENT_PREFIX             = "ev"
 	CONVERSATION_PREFIX      = "cs"
 	SCHEDULE_ITEM_PREFIX     = "si"
-	WEBSEND_PREFIX           = "wd"
 	AUTH_TOKEN_PREFIX        = "au"
 	REFRESH_TOKEN_PREFIX     = "rt"
 	RULE_PREFIX              = "ru"
 	CLIENT_PREFIX            = "cl"
-	ERROR_PREFIX             = "er"
 	WEBHOOK_PREFIX           = "wh"
 	TAG_PREFIX               = "tg"
 	TEMPLATE_PREFIX          = "tp"
 	FILE_PREFIX              = "fi"
-	BUTTON_PREFIX            = "bt"
-	CHALLENGE_PREFIX         = "ch"
 	SEGMENTATION_PREFIX      = "sg"
-	SUBIZ_PREFIX             = "su"
 	USER_FIELD_PREFIX        = "uf"
 	REQUEST_PREFIX           = "rq"
 	AUTOMATION_PREFIX        = "at"
@@ -91,18 +86,8 @@ func generateID(sign string, randomfactor int) string {
 	sb.WriteString(sign)
 
 	nowstr := formatInt(time.Now().UnixNano(), 26)
-	sb.WriteString(nowstr)
-	for i := 0; i < randomfactor; i++ {
-		sb.WriteRune(letterRunes[rand.Intn(len(letterRunes))])
-	}
-	return sb.String()
-}
+	// nowstr has 13 characters until 2048-08-02T16:53:19.999Z
 
-func generateUnixNanoID(sign string, randomfactor int, unixNano int64) string {
-	var sb strings.Builder
-	sb.WriteString(sign)
-
-	nowstr := formatInt(unixNano, 26)
 	sb.WriteString(nowstr)
 	for i := 0; i < randomfactor; i++ {
 		sb.WriteRune(letterRunes[rand.Intn(len(letterRunes))])
@@ -166,20 +151,12 @@ func NewConversationID() string {
 	return generateID(CONVERSATION_PREFIX, 3)
 }
 
-func ConversationId(unixNano int64) string {
-	return generateUnixNanoID(CONVERSATION_PREFIX, 3, unixNano)
-}
-
 func NewScheduleItemID() string {
 	return generateID(SCHEDULE_ITEM_PREFIX, 20)
 }
 
 func NewPromotionCodeID() string {
 	return generateID(PROMOTION_CODE_PREFIX, 2)
-}
-
-func NewWebsendID() string {
-	return generateID(WEBSEND_PREFIX, 20) // websend
 }
 
 // NewAuthToken return new oauth2 authorization token
@@ -197,10 +174,6 @@ func NewRuleID() string {
 
 func NewClientID() string {
 	return generateID(CLIENT_PREFIX, 6)
-}
-
-func NewErrorID() string {
-	return generateID(ERROR_PREFIX, 6)
 }
 
 func NewWebhookID() string {
@@ -254,20 +227,8 @@ func NewFileID() string {
 	return generateID(FILE_PREFIX, 5)
 }
 
-func NewButtonID() string {
-	return generateID(BUTTON_PREFIX, 8)
-}
-
-func NewChallengeID() string {
-	return generateID(CHALLENGE_PREFIX, 40)
-}
-
 func NewSegmentationID() string {
 	return generateID(SEGMENTATION_PREFIX, 5)
-}
-
-func NewSubizID() string {
-	return generateID(SUBIZ_PREFIX, 8)
 }
 
 func NewUserFieldID() string {
@@ -284,10 +245,6 @@ func NewAutomationID() string {
 
 func NewUserSessionID() string {
 	return generateID(USER_SESSION_PREFIX, 6)
-}
-
-func UserSessionId(unixNano int64) string {
-	return generateUnixNanoID(USER_SESSION_PREFIX, 6, unixNano)
 }
 
 func NewBillingID() string {
@@ -434,17 +391,6 @@ func IsScheduleItemID(id string) bool {
 	return true
 }
 
-func IsWebsendID(id string) bool {
-	if !strings.HasPrefix(id, WEBSEND_PREFIX) {
-		return false
-	}
-	ts, err := GetCreated(id, WEBSEND_PREFIX)
-	if err != nil || ts <= 0 {
-		return false
-	}
-	return true
-}
-
 func IsAuthToken(id string) bool {
 	if !strings.HasPrefix(id, AUTH_TOKEN_PREFIX) {
 		return false
@@ -483,17 +429,6 @@ func IsClientID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, CLIENT_PREFIX)
-	if err != nil || ts <= 0 {
-		return false
-	}
-	return true
-}
-
-func IsErrorID(id string) bool {
-	if !strings.HasPrefix(id, ERROR_PREFIX) {
-		return false
-	}
-	ts, err := GetCreated(id, ERROR_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
@@ -560,44 +495,11 @@ func IsFileID(id string) bool {
 	return true
 }
 
-func IsButtonID(id string) bool {
-	if !strings.HasPrefix(id, BUTTON_PREFIX) {
-		return false
-	}
-	ts, err := GetCreated(id, BUTTON_PREFIX)
-	if err != nil || ts <= 0 {
-		return false
-	}
-	return true
-}
-
-func IsChallengeID(id string) bool {
-	if !strings.HasPrefix(id, CHALLENGE_PREFIX) {
-		return false
-	}
-	ts, err := GetCreated(id, CHALLENGE_PREFIX)
-	if err != nil || ts <= 0 {
-		return false
-	}
-	return true
-}
-
 func IsSegmentationID(id string) bool {
 	if !strings.HasPrefix(id, SEGMENTATION_PREFIX) {
 		return false
 	}
 	ts, err := GetCreated(id, SEGMENTATION_PREFIX)
-	if err != nil || ts <= 0 {
-		return false
-	}
-	return true
-}
-
-func IsSubizID(id string) bool {
-	if !strings.HasPrefix(id, SUBIZ_PREFIX) {
-		return false
-	}
-	ts, err := GetCreated(id, SUBIZ_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}

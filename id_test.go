@@ -17,21 +17,16 @@ func TestId(t *testing.T) {
 		{"event", NewEventID()},
 		{"user", NewUserID()},
 		{"file", NewFileID()},
-		{"button", NewButtonID()},
 		{"conversation", NewConversationID()},
 		{"invitation", NewInvitationID()},
 		{"scheduler item", NewScheduleItemID()},
-		{"web send", NewWebsendID()},
 		{"auth token", NewAuthToken()},
 		{"refresh token", NewRefreshToken()},
 		{"rule", NewRuleID()},
 		{"client", NewClientID()},
-		{"error", NewErrorID()},
 		{"template", NewTemplateID()},
 		{"ws conn", NewWsConnID(10)},
-		{"challenge", NewChallengeID()},
 		{"segmentation", NewSegmentationID()},
-		{"subiz", NewSubizID()},
 		{"user field", NewUserFieldID()},
 		{"request", NewRequestID()},
 		{"automation", NewAutomationID()},
@@ -74,6 +69,11 @@ func BenchmarkGenID(b *testing.B) {
 	}
 }
 
+func TestC(t *testing.T) {
+	nowstr := formatInt(2479999999999999999, 26)
+	fmt.Println("DDDDDDDD", time.Now().UnixNano(), nowstr, len(nowstr))
+}
+
 func TestGetCreated(t *testing.T) {
 	// idgen.GetCreated("cs",)
 
@@ -108,16 +108,12 @@ func TestValidateID(t *testing.T) {
 		{"event", "evqdbezhjyzwmrglcrzzrnadt", IsEventID},
 		{"file", NewFileID(), IsFileID},
 		{"file", "fiqdbezwcnrckjnhokhf", IsFileID},
-		{"button", NewButtonID(), IsButtonID},
-		{"button", "btqdbezwcnrdbdieiktpgwz", IsButtonID},
 		{"conversation", NewConversationID(), IsConversationID},
 		{"conversation", "csqdbezwcnrdsclxgr", IsConversationID},
 		{"invitation", NewInvitationID(), IsInvitationID},
 		{"invitation", "ivqdbezwcnreisdbghf", IsInvitationID},
 		{"scheduler item", NewScheduleItemID(), IsScheduleItemID},
 		{"scheduler item", "siqdbezwcnrezjwfjtwuaqvjluileucrxmt", IsScheduleItemID},
-		{"web send", NewWebsendID(), IsWebsendID},
-		{"web send", "wdqdbezwcnrfsiczskacihukneqfmokwubm", IsWebsendID},
 		{"auth token", NewAuthToken(), IsAuthToken},
 		{"auth token", "auqdbezwcnrgjuaknybgomzggkomxigkfch", IsAuthToken},
 		{"refresh token", NewRefreshToken(), IsRefreshToken},
@@ -126,18 +122,12 @@ func TestValidateID(t *testing.T) {
 		{"rule", "ruqdbezwcnrhszlsbpbjp", IsRuleID},
 		{"client", NewClientID(), IsClientID},
 		{"client", "clqdbezwcnrijqvkwigot", IsClientID},
-		{"error", NewErrorID(), IsErrorID},
-		{"error", "erqdbezwcnrjaklhawqau", IsErrorID},
 		{"template", NewTemplateID(), IsTemplateID},
 		{"template", "tpqdbezwcnrjrbeceozl", IsTemplateID},
 		{"ws conn", NewWsConnID(10), IsWsConnID},
 		{"ws conn", "10pwsqdbezwcnrkhuewsnoicahfgmsjsiixcsd", IsWsConnID},
-		{"challenge", NewChallengeID(), IsChallengeID},
-		{"challenge", "chqdbezwcnrkzjmmqwksdurdtmnijfcojwdeetnkrwcqmnhwtgzqyuf", IsChallengeID},
 		{"segmentation", NewSegmentationID(), IsSegmentationID},
 		{"segmentation", "sgqdbezwcnrlryjdunoo", IsSegmentationID},
-		{"subiz", NewSubizID(), IsSubizID},
-		{"subiz", "suqdbezwcnrmiskvudpjlfi", IsSubizID},
 		{"user field", NewUserFieldID(), IsUserFieldID},
 		{"user field", "ufqdbezwcnrmzoskmu", IsUserFieldID},
 		{"request", NewRequestID(), IsRequestID},
