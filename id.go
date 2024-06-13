@@ -73,6 +73,7 @@ const (
 	ARTICLE_PREFIX           = "ar"
 	ARTICLE_CATEGORY_PREFIX  = "al"
 	JOB_PREFIX               = "jb"
+	KB_PREFIX                = "jb"
 )
 
 // New return new random ID
@@ -930,4 +931,8 @@ func NewApiTokenId() string {
 
 func NewJobId() string {
 	return generateID(JOB_PREFIX, 25)
+}
+
+func NewKBID() string {
+	return generateID(KB_PREFIX, 10)
 }

@@ -77,7 +77,7 @@ func TestC(t *testing.T) {
 func TestGetCreated(t *testing.T) {
 	// idgen.GetCreated("cs",)
 
-	i, err := GetCreated("csrztmfqahgubyfmbz", "cs")
+	i, err := GetCreated("cssabqjefhbkytemsw", "cs")
 	if err != nil {
 		panic(err)
 	}
