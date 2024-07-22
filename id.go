@@ -74,7 +74,6 @@ const (
 	ARTICLE_CATEGORY_PREFIX  = "al"
 	JOB_PREFIX               = "jb"
 	KB_PREFIX                = "jb"
-	RATING_PREFIX            = "ra"
 )
 
 // New return new random ID
@@ -184,10 +183,6 @@ func NewWebhookID() string {
 
 func NewPollingConnId(host, accid, userid string) string {
 	return POLLINGCONNECTION_PREFIX + "_" + host + "_" + accid + "_" + userid + "_" + generateID("", 4)
-}
-
-func NewRatingID() string {
-	return generateID(RATING_PREFIX, 10)
 }
 
 func ExtractPollingConnId(connid string) (host, accid, userid string) {
@@ -751,17 +746,6 @@ func IsGoroutineID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, GOROUTINE_PREFIX)
-	if err != nil || ts <= 0 {
-		return false
-	}
-	return true
-}
-
-func IsRatingID(id string) bool {
-	if !strings.HasPrefix(id, RATING_PREFIX) {
-		return false
-	}
-	ts, err := GetCreated(id, RATING_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
