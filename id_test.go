@@ -30,7 +30,7 @@ func TestId(t *testing.T) {
 		{"user field", NewUserFieldID()},
 		{"request", NewRequestID()},
 		{"automation", NewAutomationID()},
-		{"user session", NewUserSessionID()},
+		{"session", NewSessionID()},
 		{"invoice", NewInvoiceID()},
 		{"billing", NewBillingID()},
 		{"subscription", NewSubscriptionID()},
@@ -77,7 +77,7 @@ func TestC(t *testing.T) {
 func TestGetCreated(t *testing.T) {
 	// idgen.GetCreated("cs",)
 
-	i, err := GetCreated("cssabqjefhbkytemsw", "cs")
+	i, err := GetCreated("firbkozccxwgfgccasre", "cs")
 	if err != nil {
 		panic(err)
 	}
@@ -134,8 +134,8 @@ func TestValidateID(t *testing.T) {
 		{"request", "rqqdbezwcnrnqclbwgztgmlab", IsRequestID},
 		{"automation", NewAutomationID(), IsAutomationID},
 		{"automation", "atqdbezwcnrohdwmqloj", IsAutomationID},
-		{"user session", NewUserSessionID(), IsUserSessionID},
-		{"user session", "ssqdbezwcnrozhlymatud", IsUserSessionID},
+		{"session", NewSessionID(), IsSessionID},
+		{"user session", "ssqdbezwcnrozhlymatud", IsSessionID},
 		{"invoice", NewInvoiceID(), IsInvoiceID},
 		{"invoice", "icqdbezwcnrprixgmowtl", IsInvoiceID},
 		{"billing", NewBillingID(), IsBillingID},

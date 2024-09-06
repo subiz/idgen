@@ -2,7 +2,7 @@ package idgen
 
 import (
 	"errors"
-	"math/rand"
+	"math/rand/v2"
 	"strconv"
 	"strings"
 	"time"
@@ -91,7 +91,7 @@ func generateID(sign string, randomfactor int) string {
 
 	sb.WriteString(nowstr)
 	for i := 0; i < randomfactor; i++ {
-		sb.WriteRune(letterRunes[rand.Intn(len(letterRunes))])
+		sb.WriteRune(letterRunes[rand.IntN(len(letterRunes))])
 	}
 	return sb.String()
 }
@@ -244,7 +244,7 @@ func NewAutomationID() string {
 	return generateID(AUTOMATION_PREFIX, 5)
 }
 
-func NewUserSessionID() string {
+func NewSessionID() string {
 	return generateID(USER_SESSION_PREFIX, 6)
 }
 
@@ -540,7 +540,7 @@ func IsAutomationID(id string) bool {
 	return true
 }
 
-func IsUserSessionID(id string) bool {
+func IsSessionID(id string) bool {
 	if !strings.HasPrefix(id, USER_SESSION_PREFIX) {
 		return false
 	}
