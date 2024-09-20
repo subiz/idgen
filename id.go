@@ -35,6 +35,7 @@ const (
 	SUBSCRIPTION_PREFIX      = "sc"
 	CUSTOMER_PREFIX          = "cr"
 	PAYMENT_LOG_PREFIX       = "pl"
+	AUTOMATION_LOG_PREFIX    = "an"
 	PAYMENT_METHOD_PREFIX    = "pm"
 	ATTRIBUTE_PREFIX         = "ab"
 	IDEMPOTENCY_KEY_PREFIX   = "ik"
@@ -266,6 +267,10 @@ func NewCustomerID() string {
 
 func NewPaymentLogID() string {
 	return generateID(PAYMENT_LOG_PREFIX, 6)
+}
+
+func NewAutomationLogID() string {
+	return generateID(AUTOMATION_LOG_PREFIX, 6)
 }
 
 func NewPaymentMethodID() string {
@@ -600,6 +605,17 @@ func IsPaymentLogID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, PAYMENT_LOG_PREFIX)
+	if err != nil || ts <= 0 {
+		return false
+	}
+	return true
+}
+
+func IsAutomationLogID(id string) bool {
+	if !strings.HasPrefix(id, AUTOMATION_LOG_PREFIX) {
+		return false
+	}
+	ts, err := GetCreated(id, AUTOMATION_LOG_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
