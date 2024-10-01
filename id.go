@@ -17,7 +17,6 @@ const (
 	EVENT_PREFIX             = "ev"
 	CONVERSATION_PREFIX      = "cs"
 	SCHEDULE_ITEM_PREFIX     = "si"
-	AUTH_TOKEN_PREFIX        = "au"
 	REFRESH_TOKEN_PREFIX     = "rt"
 	RULE_PREFIX              = "ru"
 	CLIENT_PREFIX            = "cl"
@@ -40,7 +39,6 @@ const (
 	ATTRIBUTE_PREFIX         = "ab"
 	IDEMPOTENCY_KEY_PREFIX   = "ik"
 	PAYMENT_COMMENT_PREFIX   = "cm"
-	WS_PREFIX                = "ws"
 	USER_NOTE_PREFIX         = "nt"
 	TICKET_PREFIX            = "tk"
 	TICKET_TYPE_PREFIX       = "tt"
@@ -71,10 +69,7 @@ const (
 	API_TOKEN_PREFIX         = "ai"
 	GOROUTINE_PREFIX         = "go"
 	SLA_POLICY_PREFIX        = "sl"
-	ARTICLE_PREFIX           = "ar"
-	ARTICLE_CATEGORY_PREFIX  = "al"
 	JOB_PREFIX               = "jb"
-	KB_PREFIX                = "jb"
 )
 
 // New return new random ID
@@ -161,11 +156,6 @@ func NewPromotionCodeID() string {
 	return generateID(PROMOTION_CODE_PREFIX, 2)
 }
 
-// NewAuthToken return new oauth2 authorization token
-func NewAuthToken() string {
-	return generateID(AUTH_TOKEN_PREFIX, 20)
-}
-
 func NewRefreshToken() string {
 	return generateID(REFRESH_TOKEN_PREFIX, 30)
 }
@@ -194,9 +184,6 @@ func ExtractPollingConnId(connid string) (host, accid, userid string) {
 	return sp[1], sp[2], sp[3]
 }
 
-func NewWsConnID(partition int32) string {
-	return strconv.Itoa(int(partition)) + "p" + generateID(WS_PREFIX, 20)
-}
 
 func GetPartitionFromWsConnID(id string) int32 {
 	for i := 0; i < len(id); i++ {
@@ -397,17 +384,6 @@ func IsScheduleItemID(id string) bool {
 	return true
 }
 
-func IsAuthToken(id string) bool {
-	if !strings.HasPrefix(id, AUTH_TOKEN_PREFIX) {
-		return false
-	}
-	ts, err := GetCreated(id, AUTH_TOKEN_PREFIX)
-	if err != nil || ts <= 0 {
-		return false
-	}
-	return true
-}
-
 func IsRefreshToken(id string) bool {
 	if !strings.HasPrefix(id, REFRESH_TOKEN_PREFIX) {
 		return false
@@ -446,22 +422,6 @@ func IsWebhookID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, WEBHOOK_PREFIX)
-	if err != nil || ts <= 0 {
-		return false
-	}
-	return true
-}
-
-func IsWsConnID(id string) bool {
-	par := GetPartitionFromWsConnID(id)
-	if par < 0 {
-		return false
-	}
-	id = strings.TrimPrefix(id, strconv.Itoa(int(par))+"p")
-	if !strings.HasPrefix(id, WS_PREFIX) {
-		return false
-	}
-	ts, err := GetCreated(id, WS_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
@@ -716,14 +676,6 @@ func NewSlaPolicyID() string {
 	return generateID(SLA_POLICY_PREFIX, 10)
 }
 
-func NewArticleID() string {
-	return generateID(ARTICLE_PREFIX, 10)
-}
-
-func NewArticleCategoryID() string {
-	return generateID(ARTICLE_CATEGORY_PREFIX, 10)
-}
-
 func IsTicketTypeID(id string) bool {
 	if !strings.HasPrefix(id, TICKET_TYPE_PREFIX) {
 		return false
@@ -773,28 +725,6 @@ func IsSlaPolicyID(id string) bool {
 		return false
 	}
 	ts, err := GetCreated(id, SLA_POLICY_PREFIX)
-	if err != nil || ts <= 0 {
-		return false
-	}
-	return true
-}
-
-func IsArticleID(id string) bool {
-	if !strings.HasPrefix(id, ARTICLE_PREFIX) {
-		return false
-	}
-	ts, err := GetCreated(id, ARTICLE_PREFIX)
-	if err != nil || ts <= 0 {
-		return false
-	}
-	return true
-}
-
-func IsArticleCategoryID(id string) bool {
-	if !strings.HasPrefix(id, ARTICLE_CATEGORY_PREFIX) {
-		return false
-	}
-	ts, err := GetCreated(id, ARTICLE_CATEGORY_PREFIX)
 	if err != nil || ts <= 0 {
 		return false
 	}
@@ -947,8 +877,4 @@ func NewApiTokenId() string {
 
 func NewJobId() string {
 	return generateID(JOB_PREFIX, 25)
-}
-
-func NewKBID() string {
-	return generateID(KB_PREFIX, 10)
 }
