@@ -70,6 +70,7 @@ const (
 	GOROUTINE_PREFIX         = "go"
 	SLA_POLICY_PREFIX        = "sl"
 	JOB_PREFIX               = "jb"
+	RATING_PREFIX            = "ra"
 )
 
 // New return new random ID
@@ -110,6 +111,10 @@ func NewProductID() string {
 
 func NewCompactedKeyID() string {
 	return generateID(COMPACTED_KEY_PREFIX, 3)
+}
+
+func NewRatingID() string {
+	return generateID(RATING_PREFIX, 3)
 }
 
 func NewBizbotID() string {
@@ -183,7 +188,6 @@ func ExtractPollingConnId(connid string) (host, accid, userid string) {
 	sp := strings.Split(connid, "_")
 	return sp[1], sp[2], sp[3]
 }
-
 
 func GetPartitionFromWsConnID(id string) int32 {
 	for i := 0; i < len(id); i++ {
